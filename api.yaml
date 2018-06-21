@@ -1,0 +1,49 @@
+swagger: '2.0'
+info:
+  title: Prototype data API
+  version: "0.1"
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /weather:
+    post:
+      summary: Upload a set of values
+      operationId: api.report_weather_data
+      parameters:
+        - name: weather
+          in: body
+          schema:
+            $ref: '#/definitions/weather'
+      responses:
+        200:
+          description: Successful upload
+
+definitions:
+  weather:
+    type: object
+    required:
+      - temperature
+      - pressure
+      - humidity
+      - rain
+    properties:
+      temperature:
+        type: number
+        format: float
+        example: "19.5"
+        description: Measured temperature value in degrees celsius
+      pressure:
+        type: integer
+        example: "10023"
+        description: Measured barometric pressure in pascal
+      humidity:
+        type: number
+        format: float
+        example: "56.3"
+        description: Measured relative humidity in percent
+      rain:
+        type: integer
+        example: "1"
+        description: Measured rain, yes (1) or no (0)
